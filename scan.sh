@@ -29,34 +29,21 @@ xray=$output/xray/
 cd /root/run
 
 
-#head=0
-
-#echo '#!/bin/bash' >> exe.sh
 i=1
 for line in `cat /root/httprobe_all.txt`
 
 do
 
-#length=`wc -l /root/httprobe_all.txt|grep -o -P ".*?(?=\ )"`
-#for((#head=0;head<$length;head+=1))
-#do
 
 name=.html ; txt=$head$name ;  url=$head$line
 
-#echo '#!/bin/bash' >> $head.sh
-#echo "./xray_linux_amd64 webscan --url $line --json-output 1.txt" >> $head.sh
-#echo "rm $head.sh" >> $head.sh
-#echo "bash $head.sh" >> exe.sh
-
-#head=$((head+1))
 mkdir /root/dir_${i}
 echo "cd /root/dir_${i} ; cp -r /root/run/* /root/dir_${i} ; ./xray_linux_amd64 webscan --url \"$line\" --json-output 1.txt ; cat 1.txt >> $output/xray/xray.txt ; echo \" \" >> $output/xray/xray.txt ; rm 1.txt ; cd ../ ; rm -r /root/dir_${i}" >> /root/exe.sh
 i=$((i+1))
 done
 cat /root/exe.sh | parallel --jobs 0 --delay 0.6 --retries 1 --timeout 600
 rm -r /root/dir_* ; rm /root/exe.sh
-#cat /root/run/exe.sh | parallel --jobs 0 --delay 1
-#rm /root/run/exe.sh
+
 
 
 fi
@@ -71,23 +58,6 @@ cp /root/script/6_port/masnmapscan-V1.0/scan_url_port.txt $output/masscan_detail
 
 
 
-#### urlwatch添加
-#
-##echo '#!/bin/bash'> $output/urlwatch.sh ; cat $var > $output/urlwatch.sh ; bash $output/urlwatch.sh ; mv $output/urlwatch.sh $output/urlwatch.txt
-#num=1
-#echo "#!/bin/bash" >> exe.sh
-#for url in `cat /root/httprobe_all.txt`
-#do
-#mkdir $num
-#echo "#!/bin/bash" >> $num/$num.sh
-#echo "urlwatch --add url=$url" >> $num/$num.sh
-#echo "rm -r $num" >> $num/$num.sh
-#echo "bash $num/$num.sh" >> exe.sh
-#num=$((num+1))
-#done
-#cat exe.sh | parallel --jobs 0 --delay 0.5
-#rm exe.sh
-#rm -r dir_*
 
 
 ### 发邮件 ； 清空$output ； 发确认信息 ； 结束if urlwatch
