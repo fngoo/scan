@@ -44,6 +44,5 @@ if [ $line -eq 0 ]
 then
 rm -rf $file
 fi
-
-cd /root/script/6_port/masnmapscan-V1.0
 done
+cd /root/script/6_port/masnmapscan-V1.0
