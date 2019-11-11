@@ -40,3 +40,4 @@ rm -rf $file
 fi
 done
 cd /root/script/6_port/masnmapscan-V1.0
+> /root/screenlog.0
