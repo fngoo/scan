@@ -39,7 +39,7 @@ then
 rm -rf $file
 fi
 done
-cd /root/script/6_port/masnmapscan-V1.0
+cd /root/script/6_port/masscan_to_nmap-1
 > /root/screenlog.0
 echo scan >> /root/date.txt
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
