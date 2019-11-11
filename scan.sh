@@ -28,7 +28,7 @@ cat $var > /root/script/6_port/host2ip/host.txt
 
 cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt ; cat ip.txt | grep "." > /root/script/6_port/masscan_to_nmap-1/ip.txt ; cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
 
-cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.txt ; cp /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt $output/6_port.txt ; > /root/script/6_port/masnmapscan-V1.0/scan_url_port.txt ; > /root/script/6_port/masscan_to_nmap-1/ip.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_ip.txt ; > /root/script/6_port/masscan_to_nmap-1/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
+cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.txt ; cp /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt $output/6_port.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt ; > /root/script/6_port/masscan_to_nmap-1/ip.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_ip.txt ; > /root/script/6_port/masscan_to_nmap-1/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
 
 cd $output
 for file in `ls | grep txt`
