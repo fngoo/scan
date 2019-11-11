@@ -41,3 +41,5 @@ fi
 done
 cd /root/script/6_port/masnmapscan-V1.0
 > /root/screenlog.0
+echo scan >> /root/date.txt
+date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
