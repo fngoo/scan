@@ -20,27 +20,21 @@ rm /root/script/run/zip.txt
 
 cd /root/script/run
 
-
-for line in `cat /root/httprobe_all.txt`
-do
-./xray_linux_amd64 webscan --url \"$line\" --json-output 1.txt ; cat 1.txt >> $output/xray.txt ; rm 1.txt
-done
-
-
+./xray_linux_amd64 webscan --url-file /root/httprobe_all.txt --json-output 1.txt ; cat 1.txt >> $output/xray.txt ; rm 1.txt
 
 ### masnmapscan模块
 
 cat $var > /root/script/6_port/host2ip/host.txt
 
-cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt ; cat ip.txt | grep "." > /root/script/6_port/masnmapscan-V1.0/ip.txt ; cd /root/script/6_port/masnmapscan-V1.0 ; python masnmapcan-V1.0.py
+cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt ; cat ip.txt | grep "." > /root/script/6_port/masscan_to_nmap-1/ip.txt ; cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
 
-cp /root/script/6_port/masnmapscan-V1.0/scan_url_port.txt $output/masscan_detail.txt ; cp /root/script/6_port/masnmapscan-V1.0/masscan.json $output/masscan.txt ; > /root/script/6_port/masnmapscan-V1.0/scan_url_port.txt ; > /root/script/6_port/masnmapscan-V1.0/ip.txt ; > /root/script/6_port/masnmapscan-V1.0/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
+cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.txt ; cp /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt $output/6_port.txt ; > /root/script/6_port/masnmapscan-V1.0/scan_url_port.txt ; > /root/script/6_port/masscan_to_nmap-1/ip.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_ip.txt ; > /root/script/6_port/masscan_to_nmap-1/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
 
 cd $output
 for file in `ls | grep txt`
 do
-line=`cat $file | wc -l`
-if [ $line -eq 0 ]
+line=`cat $file`
+if [ "$line" = "" ]
 then
 rm -rf $file
 fi
