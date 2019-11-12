@@ -30,7 +30,7 @@ rm /root/script/run/zip.txt
 
 cd /root/script/run
 
-./xray_linux_amd64 webscan --url-file /root/httprobe_all.txt --json-output 1.txt ; cat 1.txt >> $output/6_xray.txt ; rm 1.txt ; echo "." >> $output/6_xray.txt ; echo "." >> $output/6_xray.txt ; echo "." >> $output/6_xray.txt
+./xray_linux_amd64 webscan --url-file /root/httprobe_all.txt --json-output 1.txt ; cat 1.txt >> $output/6_xray.txt ; rm 1.txt
 
 ### masnmapscan模块
 
