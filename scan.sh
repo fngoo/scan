@@ -26,17 +26,32 @@ unzip /root/script/run/xray_linux_amd64.zip -d /root/script/run/ ; rm /root/scri
 
 rm /root/script/run/zip.txt
 
-### xray使用
+### xray
 
 cd /root/script/run
 
 ./xray_linux_amd64 webscan --url-file /root/httprobe_all.txt --json-output 1.txt ; cat 1.txt >> $output/6_xray.txt ; rm 1.txt
 
-### masnmapscan模块
+### port
 
 cat $var > /root/script/6_port/host2ip/host.txt
 
-cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt ; cat ip.txt | grep "." > /root/script/6_port/masscan_to_nmap-1/ip.txt ; cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
+cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt
+cat ip.txt | grep "." > /root/script/6_port/masscan_to_nmap-1/ip.txt
+for ip in `cat /root/script/6_port/masscan_to_nmap-1/ip.txt`
+do
+cd /root/script/6_port/Check_Unauth
+echo $ip >> 1.txt
+python3 Check_Unauth.py $ip >> 1.txt
+grep=`grep -op "+" 1.txt`
+if [ "$grep" = "" ]
+then
+> 1.txt
+fi
+cat 1.txt >> $output/6_unauth.txt
+> 1.txt
+done
+cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
 
 cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.txt ; cp /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt $output/6_port.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt ; > /root/script/6_port/masscan_to_nmap-1/ip.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_ip.txt ; > /root/script/6_port/masscan_to_nmap-1/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
 
@@ -51,7 +66,7 @@ fi
 done
 cd /root/script/6_port/masscan_to_nmap-1
 screen=`cat /root/screenlog.0 | wc -l`
-if [ $screen -gt 222222 ]
+if [ $screen -gt 666666 ]
 then
 > /root/screenlog.0
 fi
