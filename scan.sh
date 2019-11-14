@@ -68,7 +68,7 @@ cd /root/script/6_port/masscan_to_nmap-1
 screen=`cat /root/screenlog.0 | wc -l`
 if [ $screen -gt 666666 ]
 then
-> /root/screenlog.0
+rm /root/screenlog.0
 fi
 echo scan >> /root/date.txt
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
