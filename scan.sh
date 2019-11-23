@@ -72,3 +72,4 @@ rm /root/screenlog.0
 fi
 echo scan >> /root/date.txt
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
+bash /root/script/webhook.sh
