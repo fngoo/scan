@@ -46,7 +46,7 @@ do
 cd /root/script/6_port/Check_Unauth
 echo $ip >> 1.txt
 python3 Check_Unauth.py $ip >> 1.txt
-grep=`grep -op "+" 1.txt`
+grep=`grep -oP "+" 1.txt`
 if [ "$grep" = "" ]
 then
 > 1.txt
