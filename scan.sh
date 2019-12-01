@@ -38,9 +38,9 @@ yes|apt install nmap
 apt install --fix-missing
 
 cat $var > /root/script/6_port/host2ip/host.txt
-
-cd /root/script/6_port/host2ip ; python host2ip.py ; cat ip.txt | grep "." >> /root/ip.txt ; sort -u /root/ip.txt -o /root/ip.txt
-cat ip.txt | grep "." > /root/script/6_port/masscan_to_nmap-1/ip.txt
+bash /root/script/0_subdomain/massdns/scripts/get-resolvers.sh
+cd /root/script/6_port/host2ip ; cat host.txt | massdns -r /root/script/0_subdomain/massdns/lists/resolvers.txt --root -t A -s 1666 -o S -w results.txt ; awk -F"A\ " '{print $2}' results.txt >> ip.txt ; rm results.txt
+cat ip.txt > /root/script/6_port/masscan_to_nmap-1/ip.txt
 for ip in `cat /root/script/6_port/masscan_to_nmap-1/ip.txt`
 do
 cd /root/script/6_port/Check_Unauth
@@ -73,6 +73,6 @@ if [ $screen -gt 666666 ]
 then
 rm /root/screenlog.0
 fi
-echo scan >> /root/date.txt
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
+echo scan >> /root/date.txt
 bash /root/script/webhook.sh
