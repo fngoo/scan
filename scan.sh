@@ -1,15 +1,3 @@
-rm apps.json
-webanalyze -update
-for line in `cat $var`
-do
-echo "webanalyze -crawl 12 -host $line -output csv >> $output/6_whatsweb.txt ; sort -u $output/6_whatsweb.txt -o $output/6_whatsweb.txt ; cat $output/6_whatsweb.txt >> /root/whatsweb.txt ; sort -u /root/whatsweb.txt -o /root/whatsweb.txt ; wc -l $output/6_whatsweb.txt" > analyze.sh
-timeout 66 bash analyze.sh
-done
-rm analyze.sh
-
-date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
-echo scan_Analyze >> /root/date.txt
-
 mkdir /root/script/run
 
 rm -rf /root/script/run
@@ -72,11 +60,7 @@ rm -rf $file
 fi
 done
 cd /root/script/6_port/masscan_to_nmap-1
-screen=`cat /root/screenlog.0 | wc -l`
-if [ $screen -gt 666666 ]
-then
-rm /root/screenlog.0
-fi
+
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
 echo scan_port >> /root/date.txt
 bash /root/script/webhook.sh
