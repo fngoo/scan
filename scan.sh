@@ -7,6 +7,8 @@ timeout 66 bash analyze.sh
 done
 rm analyze.sh
 
+date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
+echo scan_Analyze >> /root/date.txt
 
 mkdir /root/script/run
 
@@ -32,6 +34,8 @@ cd /root/script/run
 
 ./xray_linux_amd64 webscan --url-file /root/httprobe_all.txt --json-output 1.txt ; cat 1.txt >> $output/6_xray.txt ; rm 1.txt
 
+date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
+echo scan_XRAY >> /root/date.txt
 ### port
 apt update
 yes|apt install nmap
@@ -74,5 +78,5 @@ then
 rm /root/screenlog.0
 fi
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
-echo scan >> /root/date.txt
+echo scan_port >> /root/date.txt
 bash /root/script/webhook.sh
