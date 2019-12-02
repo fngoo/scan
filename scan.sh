@@ -32,7 +32,7 @@ apt install --fix-missing
 cat $var > /root/script/6_port/host2ip/host.txt
 bash /root/script/0_subdomain/massdns/scripts/get-resolvers.sh
 cd /root/script/6_port/host2ip ; cat host.txt | massdns -r /root/script/0_subdomain/massdns/lists/resolvers.txt --root -t A -s 1666 -o S -w results.txt ; awk -F"A\ " '{print $2}' results.txt >> ip.txt ; rm results.txt
-cat ip.txt > /root/script/6_port/masscan_to_nmap-1/ip.txt
+cat ip.txt > /root/script/6_port/masscan_to_nmap-1/ip.txt ; sort -u /root/script/6_port/masscan_to_nmap-1/ip.txt -o /root/script/6_port/masscan_to_nmap-1/ip.txt
 
 cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
 
