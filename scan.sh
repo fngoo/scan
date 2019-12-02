@@ -33,6 +33,13 @@ cat $var > /root/script/6_port/host2ip/host.txt
 bash /root/script/0_subdomain/massdns/scripts/get-resolvers.sh
 cd /root/script/6_port/host2ip ; cat host.txt | massdns -r /root/script/0_subdomain/massdns/lists/resolvers.txt --root -t A -s 1666 -o S -w results.txt ; awk -F"A\ " '{print $2}' results.txt >> ip.txt ; rm results.txt
 cat ip.txt > /root/script/6_port/masscan_to_nmap-1/ip.txt
+
+cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
+
+port=`grep -E ":27017 |:2181 |:6379 |:9200 |:28017 |:11211 |:21 |:22 |:23 |:25 |:53 |:110 |:123 |:137 |:143 |:161 |:389 |:443 |:445 |:512 |:873 |:1098 |:1352 |:1433 |:1521 |:2049 |:2181 |:2222 |:2601 |:3128 |:3306 |:3389 |:4100 |:4440 |:4848 |:5000 |:5422 |:5900 |:5984 |:6082 |:6379 |:7001 |:8000 |:8069 |:8080 |:8089 |:8161 |:8649 |:8980 |:9080 |:9200 |:11211 |:27017 |:50000 |:50010 |:67 |:68" /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt`
+if [ "$port" != "" ]
+then
+grep -E ":27017 |:2181 |:6379 |:9200 |:28017 |:11211 |:21 |:22 |:23 |:25 |:53 |:110 |:123 |:137 |:143 |:161 |:389 |:443 |:445 |:512 |:873 |:1098 |:1352 |:1433 |:1521 |:2049 |:2181 |:2222 |:2601 |:3128 |:3306 |:3389 |:4100 |:4440 |:4848 |:5000 |:5422 |:5900 |:5984 |:6082 |:6379 |:7001 |:8000 |:8069 |:8080 |:8089 |:8161 |:8649 |:8980 |:9080 |:9200 |:11211 |:27017 |:50000 |:50010 |:67 |:68" /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt > $output/6_potential.txt
 for ip in `cat /root/script/6_port/masscan_to_nmap-1/ip.txt`
 do
 cd /root/script/6_port/Check_Unauth
@@ -46,7 +53,7 @@ fi
 cat 1.txt >> $output/6_unauth.txt
 > 1.txt
 done
-cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
+fi
 
 cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.txt ; cp /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt $output/6_port.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt ; > /root/script/6_port/masscan_to_nmap-1/ip.txt ; > /root/script/6_port/masscan_to_nmap-1/scan_ip.txt ; > /root/script/6_port/masscan_to_nmap-1/masscan.json ; > /root/script/6_port/host2ip/host.txt ; > /root/script/6_port/host2ip/ip.txt
 
