@@ -72,6 +72,14 @@ then
 rm -rf $file
 fi
 done
+#move
+cp $output/zzz_all.txt /root/z_juice/new.txt
+echo "" >> /root/z_juice/1all_old.txt
+echo "------------" >> /root/z_juice/1all_old.txt
+echo "" >> /root/z_juice/1all_old.txt
+cat /root/z_juice/1all_old.txt >> /root/z_juice/new.txt
+rm /root/z_juice/1all_old.txt ; mv /root/z_juice/new.txt /root/z_juice/1all_old.txt
+
 cd /root/script/6_port/masscan_to_nmap-1
 
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
