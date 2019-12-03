@@ -62,6 +62,10 @@ cat /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt >> /root/whatsport.t
 cd $output
 for file in `ls | grep txt`
 do
+cat $file >> $output/zzz_all.txt
+echo "" >> $output/zzz_all.txt
+echo "-----------" >> $output/zzz_all.txt
+echo "" >> $output/zzz_all.txt
 line=`cat $file`
 if [ "$line" = "" ]
 then
