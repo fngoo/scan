@@ -36,7 +36,8 @@ cat ip.txt > /root/script/6_port/masscan_to_nmap-1/ip.txt ; sort -u /root/script
 
 cd /root/script/6_port/masscan_to_nmap-1 ; python scan.py
 
-grep -E ":27017 |:2181 |:6379 |:9200 |:28017 |:11211 |:21 |:25 |:53 |:110 |:123 |:137 |:143 |:161 |:389 |:445 |:512 |:873 |:1098 |:1352 |:1433 |:1521 |:2049 |:2181 |:2222 |:2601 |:3128 |:3306 |:3389 |:4100 |:4440 |:4848 |:5000 |:5422 |:5900 |:5984 |:6082 |:6379 |:7001 |:8000 |:8069 |:8080 |:8089 |:8161 |:8649 |:8980 |:9080 |:9200 |:11211 |:27017 |:50000 |:50010 |:67 |:68 " /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt > $output/6_potential.txt ; sort -u $output/6_potential.txt -o $output/6_potential.txt
+grep -E ":27017 |:2181 |:6379 |:9200 |:28017 |:11211 |:21 |:22 |:25 |:53 |:110 |:123 |:137 |:143 |:161 |:389 |:445 |:512 |:873 |:1098 |:1352 |:1433 |:1521 |:2049 |:2181 |:2222 |:2601 |:3128 |:3306 |:3389 |:4100 |:4440 |:4848 |:5000 |:5422 |:5900 |:5984 |:6082 |:6379 |:7001 |:8000 |:8069 |:8080 |:8089 |:8161 |:8649 |:8980 |:9080 |:9200 |:11211 |:27017 |:50000 |:50010 |:67 |:68 " /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt > $output/6_potential.txt ; sort -u $output/6_potential.txt -o $output/6_potential.txt
+grep -E "FTP|SSH|telnet|SMTP|DNS|POP3|NTP|Samba|imap|LDAP|Https|SMB|linux r|rsync|JAVARMI|lotus|mssql|oracle|NFS|Zookeeper|DA|zebra|squid|mysql|RDP|SysBase|rundeck|glassfish|DB2|postgreSQL|vnc|CouchDB|varnish|redis|WebLogic|jdwp|zabbix|Apache|Tomcat|Nginx|Axis2|jboss|jenkins|activeMQ|ganglia|OpenNMS|websphere|elasticsearch|memcache|mongoDB|SAP|Hadoop|dhcp" /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt > $output/6_potential.txt ; sort -u $output/6_potential.txt -o $output/6_potential.txt
 
 port=`grep -E ":27017 |:2181 |:6379 |:9200 |:28017 |:11211 |:21 " /root/script/6_port/masscan_to_nmap-1/scan_url_port.txt`
 if [ "$port" != "" ]
