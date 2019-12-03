@@ -64,6 +64,7 @@ for file in `ls | grep txt`
 do
 cat $file >> $output/zzz_all.txt
 echo "" >> $output/zzz_all.txt
+echo "$file" >> $output/zzz_all.txt
 echo "-----------" >> $output/zzz_all.txt
 echo "" >> $output/zzz_all.txt
 line=`cat $file`
