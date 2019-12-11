@@ -49,6 +49,9 @@ rm /root/z_juice/1all_old.txt ; mv /root/z_juice/new.txt /root/z_juice/1all_old.
 
 cd /root/script/6_port/masscan_to_nmap-1
 
+cat $output/3_httprobe.txt | awk '{print NR,$0}' > 1.txt ; mv 1.txt $output/3_httprobe.txt
+cat $output/3_getjs.txt | awk '{print NR,$0}' > 1.txt ; mv 1.txt $output/3_getjs.txt
+
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
 echo scan_port >> /root/date.txt
 bash /root/script/webhook.sh
