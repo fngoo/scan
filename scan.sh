@@ -51,6 +51,11 @@ cd /root/script/6_port/masscan_to_nmap-1
 
 cat $output/3_httprobe.txt | awk '{print NR,$0}' > 1.txt ; mv 1.txt $output/3_httprobe.txt
 cat $output/3_getjs.txt | awk '{print NR,$0}' > 1.txt ; mv 1.txt $output/3_getjs.txt
+del=`wc -l /root/screenlog.0  | awk '{print $1}'`
+if [ $del -gt 6666666 ]
+then
+> /root/screenlog.0
+fi
 
 date "+%Y-%m-%d_%H:%M:%S" >> /root/date.txt
 echo scan_port >> /root/date.txt
